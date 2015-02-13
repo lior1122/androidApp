@@ -19,7 +19,6 @@ import android.widget.EditText;
 
 public class Login extends Activity {
 	EditText email;
-	EditText Password;
 	Button login;
 	Button facebookLogin;
 

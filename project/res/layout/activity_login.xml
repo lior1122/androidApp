@@ -27,13 +27,6 @@
             <requestFocus />
         </EditText>
 
-        <EditText
-            android:id="@+id/editText2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPassword" />
-
         <Button
             android:id="@+id/btLogin"
             android:layout_width="match_parent"
