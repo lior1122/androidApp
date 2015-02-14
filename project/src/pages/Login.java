@@ -1,17 +1,13 @@
 package pages;
 
-import mainActivity.MainActivity;
-
 import com.example.project.R;
-import com.example.project.R.id;
-import com.example.project.R.layout;
-import com.example.project.R.menu;
+import com.example.project.UserConferenceListView;
 
+import DB.Queries;
+import Params.Params;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -20,7 +16,8 @@ import android.widget.EditText;
 public class Login extends Activity {
 	EditText email;
 	Button login;
-	Button facebookLogin;
+	Button btLinkdinLogin;
+	EditText etEmail;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,18 +26,21 @@ public class Login extends Activity {
 		getActionBar().hide();
 		setContentView(R.layout.activity_login);
 		setOnclickListeners();
+		etEmail = (EditText)findViewById(R.id.ETemail);  
 	}
 
 	private void setOnclickListeners() {
 		 login = (Button) findViewById(R.id.btLogin);
-		 facebookLogin = (Button) findViewById(R.id.btLinkedinLogin);
+		 btLinkdinLogin = (Button) findViewById(R.id.btLinkedinLogin);
+		 
 		 login.setOnClickListener(new View.OnClickListener() {
 	             public void onClick(View v) {
-	            	 Intent intent = new Intent(Login.this, MainActivity.class);
+	            	 Params.setUsersConferences(Queries.GetAllUserConferences(etEmail.getText().toString()));
+	            	 Intent intent = new Intent(Login.this, UserConferenceListView.class);
 	            	 startActivity(intent);
 	             }
 	         });
-		 facebookLogin.setOnClickListener(new View.OnClickListener() {
+		 btLinkdinLogin.setOnClickListener(new View.OnClickListener() {
              public void onClick(View v) {
                  // Perform action on click
              }
