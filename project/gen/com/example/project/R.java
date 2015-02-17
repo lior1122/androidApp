@@ -31,13 +31,13 @@ public final class R {
         public static final int btLinkedinLogin=0x7f080003;
         public static final int btLogin=0x7f080002;
         public static final int conferencesListViewActivity=0x7f080006;
-        public static final int firstLine=0x7f080009;
-        public static final int icon=0x7f080008;
+        public static final int ivIcon=0x7f080008;
         public static final int linearLayout1=0x7f080000;
         public static final int lvConferences=0x7f080007;
         public static final int message=0x7f08000a;
         public static final int pager=0x7f080005;
         public static final int textView1=0x7f080004;
+        public static final int tvLabel=0x7f080009;
     }
     public static final class layout {
         public static final int activity_login=0x7f030000;

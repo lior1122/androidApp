@@ -1,8 +1,8 @@
 package pages;
 
 import com.example.project.R;
-import com.example.project.UserConferenceListView;
 
+import conferenceSelect.UserConferenceListView;
 import DB.Queries;
 import Params.Params;
 import android.app.Activity;
