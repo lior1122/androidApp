@@ -17,6 +17,7 @@ import com.google.code.linkedinapi.schema.Person;
 import conferenceSelect.UserConferenceListView;
 import DB.Queries;
 import Params.Params;
+import Params.UserParams;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -92,12 +93,12 @@ public class Login extends Activity {
             client = factory.createLinkedInApiClient(accessToken);
         // Now you can access login person profile details...
 
-        Person profile = client.getProfileForCurrentUser(EnumSet.of(ProfileField.ID, ProfileField.FIRST_NAME,ProfileField.LAST_NAME, ProfileField.HEADLINE));
-
-        Log.d("First Name", profile.getFirstName());
-        Log.d("Last Name", profile.getLastName());
-        Log.d("pic", profile.toString());
-
+        Person profile = client.getProfileForCurrentUser(EnumSet.of(ProfileField.ID, ProfileField.FIRST_NAME,ProfileField.LAST_NAME, ProfileField.HEADLINE,ProfileField.PICTURE_URL));
+        UserParams.setFname(profile.getFirstName());
+        UserParams.setLname(profile.getLastName());
+        UserParams.setHeadLine(profile.getHeadline());
+        UserParams.setUserPic(profile.getPictureUrl());
+      
 
     }
 	
