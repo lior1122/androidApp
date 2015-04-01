@@ -2,6 +2,9 @@ package pages;
 
 import java.util.EnumSet;
 
+import org.json.JSONException;
+
+import server.API;
 import linkdin.Constants;
 
 import com.example.project.R;
@@ -16,8 +19,8 @@ import com.google.code.linkedinapi.schema.Person;
 
 import conferenceSelect.UserConferenceListView;
 import DB.Queries;
-import Params.Params;
-import Params.UserParams;
+import Params.Conferences;
+import Params.User;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -61,11 +64,22 @@ public class Login extends Activity {
 		 
 		 login.setOnClickListener(new View.OnClickListener() {
 	             public void onClick(View v) {
-	            	 Params.setUsersConferences(Queries.GetAllUserConferences(etEmail.getText().toString()));
+	            	 
+
+					try {
+					User.setUserParams(API.GetUserParams(etEmail.getText().toString()));
+	            	Conferences.setUserConferences(API.GetUserConferences(User.getId()));
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
 	            	 Intent intent = new Intent(Login.this, UserConferenceListView.class);
 	            	 startActivity(intent);
 	             }
 	         });
+		 
+		 
 		 btLinkdinLogin.setOnClickListener(new View.OnClickListener() {
              public void onClick(View v) {
             	 setLinkdinApi();
@@ -94,10 +108,8 @@ public class Login extends Activity {
         // Now you can access login person profile details...
 
         Person profile = client.getProfileForCurrentUser(EnumSet.of(ProfileField.ID, ProfileField.FIRST_NAME,ProfileField.LAST_NAME, ProfileField.HEADLINE,ProfileField.PICTURE_URL));
-        UserParams.setFname(profile.getFirstName());
-        UserParams.setLname(profile.getLastName());
-        UserParams.setHeadLine(profile.getHeadline());
-        UserParams.setUserPic(profile.getPictureUrl());
+        User.setUserParams(profile.getFirstName(), profile.getLastName(), profile.getHeadline(), profile.getPictureUrl());
+        
       
 
     }

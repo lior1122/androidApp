@@ -7,7 +7,7 @@ import com.example.project.R.id;
 import com.example.project.R.layout;
 
 import utils.Utils;
-import Params.Params;
+import Params.Conferences;
 import android.app.Activity;
 import android.app.ListActivity;
 import android.os.Bundle;
@@ -28,8 +28,8 @@ public class UserConferenceListView extends ListActivity {
      protected void onCreate(Bundle savedInstanceState) {
 		 super.onCreate(savedInstanceState);
 		 
-	        // 1. pass context and data to the custom adapter
-	        ConferenceAdapter adapter = new ConferenceAdapter(this, Utils.GetUserConference(Params.getUsersConferences()));
+	         //1. pass context and data to the custom adapter
+	        ConferenceAdapter adapter = new ConferenceAdapter(this, Utils.GetUserConference(Conferences.getUserConferences()));
 	 
 	        //2. setListAdapter
 	        setListAdapter(adapter);
