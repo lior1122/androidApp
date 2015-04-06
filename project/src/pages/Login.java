@@ -19,7 +19,7 @@ import com.google.code.linkedinapi.schema.Person;
 
 import conferenceSelect.UserConferenceListView;
 import DB.Queries;
-import Params.Conferences;
+import Params.Conference;
 import Params.User;
 import android.app.Activity;
 import android.content.Intent;
@@ -68,7 +68,7 @@ public class Login extends Activity {
 
 					try {
 					User.setUserParams(API.GetUserParams(etEmail.getText().toString()));
-	            	Conferences.setUserConferences(API.GetUserConferences(User.getId()));
+	            	Conference.setUserConferences(API.GetUserConferences(User.getId()));
 					} catch (JSONException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

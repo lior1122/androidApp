@@ -9,6 +9,7 @@ import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.HttpGet;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -22,13 +23,13 @@ public class Utils {
 	public static ArrayList<ConferenceItem> GetUserConference(JSONArray array){
 		
 		ArrayList<ConferenceItem> listdata = new ArrayList<ConferenceItem>();
-		JSONArray obj;
+		JSONObject obj;
 		
 		for(int i=0;i<array.length();i++){
 		
 			try {
-				obj = array.getJSONArray(i);
-				listdata.add(new ConferenceItem(obj.getJSONObject(1).getString("name"), obj.getJSONObject(2).getString("pic")));
+				obj = array.getJSONObject(i);
+				listdata.add(new ConferenceItem(obj.getString("id"),obj.getString("name"), obj.getString("imageLink")));
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

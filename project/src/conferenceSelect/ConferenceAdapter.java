@@ -1,8 +1,8 @@
 package conferenceSelect;
 
 import java.util.ArrayList;
-import utils.ImageDownloaderTask;
 
+import utils.ImageDownloaderTask;
 import utils.Utils;
 
 import com.example.project.R;
@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class ConferenceAdapter extends ArrayAdapter<ConferenceItem> {
@@ -51,5 +52,7 @@ public class ConferenceAdapter extends ArrayAdapter<ConferenceItem> {
 
          return rowView;
      }
+     
+    
 
 }

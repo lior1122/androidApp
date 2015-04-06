@@ -59,7 +59,7 @@ public class User {
 		fname = uParams.getString("first");
 		lname = uParams.getString("last");
 		id = uParams.getString("id");
-		userPic = uParams.getString("picLink");
+		userPic = uParams.getString("pic");
 		gender = uParams.getString("gender");
 		age = uParams.getString("age");
 		}

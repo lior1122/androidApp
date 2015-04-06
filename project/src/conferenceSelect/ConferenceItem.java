@@ -3,12 +3,22 @@ package conferenceSelect;
 import android.widget.ImageView;
 
 public class ConferenceItem {
-	
-	 	private String label;
+		
+		private String id;
+	 	public String getId() {
+			return id;
+		}
+
+		public void setId(String id) {
+			this.id = id;
+		}
+
+		private String label;
 	    private String imageLink;
 	 
-	    public ConferenceItem(String label, String imageLink) {
+	    public ConferenceItem(String id, String label, String imageLink) {
 	        super();
+	        this.id = id;
 	        this.label = label;
 	        this.imageLink = imageLink;
 	    }
