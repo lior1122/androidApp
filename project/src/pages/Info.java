@@ -24,10 +24,7 @@ public class Info extends Fragment {
 		View view = inflater.inflate(R.layout.info, container, false);
 
 		wellcome = (TextView) view.findViewById(R.id.tvWellcom);
-		map = (WebView) view.findViewById(R.id.wvMap);
-		wellcome.setText("Welcom To " + Conference.getName());
-		map.getSettings().setJavaScriptEnabled(true);
-		 map.loadUrl("http://maps.googleapis.com/maps/api/staticmap?ll=36.97,%20-122&lci=bike&z=13&t=p&size=500x500&sensor=true");
+		map.loadUrl("http://maps.googleapis.com/maps/api/staticmap?ll=36.97,%20-122&lci=bike&z=13&t=p&size=500x500&sensor=true");
 		return view;
 
 	}

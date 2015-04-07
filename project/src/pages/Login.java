@@ -1,10 +1,13 @@
 package pages;
 
 import java.util.EnumSet;
+import java.util.concurrent.ExecutionException;
 
 import org.json.JSONException;
 
 import server.API;
+import server.GetUserConferences;
+import server.GetUserParams;
 import linkdin.Constants;
 
 import com.example.project.R;
@@ -22,6 +25,7 @@ import DB.Queries;
 import Params.Conference;
 import Params.User;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -37,7 +41,7 @@ public class Login extends Activity {
 	private Button login;
 	private Button btLinkdinLogin;
 	private EditText etEmail;
-	
+	private ProgressDialog dialog;
 	private LinkedInOAuthService oAuthService;
 	private LinkedInApiClientFactory factory;
 	private LinkedInRequestToken liToken;
@@ -56,6 +60,7 @@ public class Login extends Activity {
 		}
 		setOnclickListeners();
 		etEmail = (EditText)findViewById(R.id.ETemail); 
+		dialog = new ProgressDialog(this);
 	}
 
 	private void setOnclickListeners() {
@@ -64,18 +69,14 @@ public class Login extends Activity {
 		 
 		 login.setOnClickListener(new View.OnClickListener() {
 	             public void onClick(View v) {
-	            	 
+	                 dialog.setMessage("Connecting. Please wait.");
+	                 dialog.show();
 
-					try {
-					User.setUserParams(API.GetUserParams(etEmail.getText().toString()));
-	            	Conference.setUserConferences(API.GetUserConferences(User.getId()));
-					} catch (JSONException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+					new GetUserParams(Login.this).execute(etEmail.getText().toString());
+					new GetUserConferences(Login.this).execute();
 
-	            	 Intent intent = new Intent(Login.this, UserConferenceListView.class);
-	            	 startActivity(intent);
+	            	// Intent intent = new Intent(Login.this, UserConferenceListView.class);
+	            	 //startActivity(intent);
 	             }
 	         });
 		 
@@ -113,6 +114,11 @@ public class Login extends Activity {
       
 
     }
+	
+	public void stopDialog()
+	{
+		dialog.dismiss();
+	}
 	
 
 }
