@@ -1,12 +1,7 @@
 package pages;
 
 import java.util.EnumSet;
-import java.util.concurrent.ExecutionException;
 
-import org.json.JSONException;
-
-import server.API;
-import server.GetUserConferences;
 import server.GetUserParams;
 import linkdin.Constants;
 
@@ -20,24 +15,21 @@ import com.google.code.linkedinapi.client.oauth.LinkedInOAuthServiceFactory;
 import com.google.code.linkedinapi.client.oauth.LinkedInRequestToken;
 import com.google.code.linkedinapi.schema.Person;
 
-import conferenceSelect.UserConferenceListView;
-import DB.Queries;
-import Params.Conference;
 import Params.User;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 
 public class Login extends Activity {
-	private EditText email;
 	private Button login;
 	private Button btLinkdinLogin;
 	private EditText etEmail;
@@ -73,10 +65,7 @@ public class Login extends Activity {
 	                 dialog.show();
 
 					new GetUserParams(Login.this).execute(etEmail.getText().toString());
-					new GetUserConferences(Login.this).execute();
 
-	            	// Intent intent = new Intent(Login.this, UserConferenceListView.class);
-	            	 //startActivity(intent);
 	             }
 	         });
 		 
@@ -115,10 +104,35 @@ public class Login extends Activity {
 
     }
 	
-	public void stopDialog()
-	{
-		dialog.dismiss();
-	}
+    public void StopDialog() {
+        dialog.dismiss();
+    }
+
+    public void StopDialogWithError(String string) {
+        StopDialog();
+        showErrorDialog(string);
+    }
+    
+    private void showErrorDialog(final String msg) {
+        this.runOnUiThread((Runnable)new Runnable(){
+
+            public void run() {
+            	AlertDialog.Builder alertDialog = new AlertDialog.Builder(
+            	        Login.this);
+            	alertDialog.setTitle("Error");
+            	alertDialog.setMessage(msg);
+            	alertDialog.setPositiveButton("OK",
+            	        new DialogInterface.OnClickListener() {
+            	            public void onClick(DialogInterface dialog, int which) {
+            	            }
+            	        });
+            	alertDialog.show();
+
+            	
+            }
+
+        });
+    }
 	
 
 }

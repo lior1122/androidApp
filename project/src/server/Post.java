@@ -13,26 +13,18 @@ import org.apache.http.message.BasicNameValuePair;
 
 public class Post {
 	
-	public HttpResponse postData(String url, List<BasicNameValuePair> params) {
-	    // Create a new HttpClient and Post Header
-	    HttpClient httpclient = new DefaultHttpClient();
-	    HttpPost httppost = new HttpPost(url);
-	    HttpResponse response = null;
+	 public HttpResponse postData(String string, List<BasicNameValuePair> list) {
+	        DefaultHttpClient defaultHttpClient = new DefaultHttpClient();
+	        HttpPost httpPost = new HttpPost(string);
+	        try {
+	            httpPost.setEntity(new UrlEncodedFormEntity(list));
+	            HttpResponse httpResponse = defaultHttpClient.execute(httpPost);
+	            return httpResponse;
+	        }
+	        catch (IOException e) {
+	            return null;
+	        }
 
-	try {
-	    // Add your data
-	    httppost.setEntity(new UrlEncodedFormEntity(params));
-
-	    // Execute HTTP Post Request
-	     response = httpclient.execute(httppost);
-	    
-
-	} catch (ClientProtocolException e) {
-	    // TODO Auto-generated catch block
-	} catch (IOException e) {
-	    // TODO Auto-generated catch block
-	}
-		return response;
-	}
+	    }
 
 }
